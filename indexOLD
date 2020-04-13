@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="interface.css">		<!--Calls the CSS stylesheet "interface.css"-->
+		<meta charset="utf-8">
+		<title>Survival</title>								<!--Sets the title of the webpage to "Survival"-->
+	</head>
+	<body>
+		<div class="row">									<!--Creates a row in the body of the webpage-->
+			<div class="column">							<!--GATHERING COLUMN-->
+				<h3>Gathering</h3><br>	
+				<button onClick="gatherGen()">Gather Resources</button><br>
+				</div>
+			<div class="column">							<!--CHARACTER/INVENTORY COLUMN-->
+				<h3>Character</h3>									<!--Header for character screen-->
+				HP: 100/100<br><br>										<!--Displaying the HP-->
+				Food: <span id="foodAtCap"><span id="foodGathered">0</span></span>/<span id="foodCap">100</span><br>			<!--Displaying food amount and cap-->
+				Water: <span id="waterAtCap"><span id="waterGathered">0</span></span>/<span id="waterCap">100</span><br>		<!--Displaying water amount and cap-->
+				<h4>Crafting Supplies</h4>							<!--Header for crafting supplies-->
+				Stone: <span id="stoneAtCap"><span id="stoneGathered">0</span></span>/<span id="stoneCap">50</span><br>		<!--Displaying amount of stone and cap-->
+				Sticks: <span id="sticksAtCap"><span id="sticksGathered">0</span></span>/<span id="sticksCap">50</span><br>		<!--Displaying amount of sticks and cap-->
+				Fiber: <span id="fiberAtCap"><span id="fiberGathered">0</span></span>/<span id="fiberCap">50</span><br>		<!--Displaying amount of fiber and cap-->
+				<h4 id="inventory">Inventory</h4><br>				<!--Header for inventory-->
+				<span id="inventoryHammer">Hammers: <span id="hammersCrafted">0</span>/<span id="hammerCap">10</span> (Level: <span id="hammerLevel">1</span>)</span><br>	<!--Shows number of hammers and the level-->
+				<span id="inventorySpear">Spears: <span id="spearCount">0</span>/<span id="spearCap">10</span> (Level: <span id="spearLevel">1</span>)</span><br>			<!--Shows number of spears and the hammer level-->
+			</div>
+			<div class="column">							<!--CRAFTING COLUMN-->
+				<h3>Crafting</h3>							<!--Header for Crafting part-->
+				<span id="craftingGameStartText">I wonder if I can make tools?<br>I should find some resources first...</span><br>		<!--On game start, displays this text, hides after you get 1 stone, 1 stick, 1 fiber-->
+				<span id="hammer"><button onClick="craftHammer()">Craft Hammer</button>		<!--Craft hammer button-->
+					(Cost: <span id="hammerCostStone">1 </span> stone, 		<!----------------------------------->
+					<span id="hammerCostSticks">1</span> sticks, 			<!--Current cost of crafting hammer-->
+					<span id="hammerCostFiber">1</span> fiber)</span>		<!----------------------------------->
+				<span id="hammerUpgrade"><button onClick="upgradeHammer()">Upgrade Hammer</button>		<!--Upgrade hammer button (hidden at game start, unlocks after first craft)-->	
+					(Cost: <span id="hammerUpgradeCostStone">5 </span> stone, 	<!------------------------------------>
+					<span id="hammerUpgradeCostSticks">5</span> sticks, 		<!--Current cost of hammer upgrading-->
+					<span id="hammerUpgradeCostFiber">5</span> fiber)			<!------------------------------------>
+				</span><br>
+				<span id="hammerUpgradeText1">		<!--Hammer upgrade text #1 (appears after first hammer is built)-->
+					<br>This could be useful. Maybe I should focus on upgrading my hammer before trying to make other tools?
+				</span>
+				<span id="hammerUpgradeText2">		<!--Hammer upgrade text #2 (appears after hammer gets level 5-->
+					<br>
+					<br>This hammer should work well. Now I can focus on some other tools!<br><hr>
+				</span>
+				<span id="spear">
+					<button onClick="craftSpear()">Craft Spear</button> (Cost: <span id="spearCostStone">1</span> stone, 
+					<span id="spearCostSticks">1</span> sticks, 
+					<span id="spearCostFiber">5</span> fiber)
+				</span>
+			</div>
+		</div> 
+    <script src="main.js" type="text/javascript"></script>			<!--Allows the javascript from "main.js" to be used on this page-->
+	</body>
+</html>

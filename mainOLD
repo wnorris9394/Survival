@@ -1,0 +1,199 @@
+var gameData = {
+	food: 0,						// Food
+	water: 0,						// Water
+	stone: 0,						// Stone
+	sticks: 0,						// Sticks
+	fiber: 0,						// Fiber
+	foodPerClick: 1,				// Food per click (might change with upgrades?
+	waterPerClick: 1,				// Water per click
+	stonePerClick: 1,				// Stone per click
+	sticksPerClick: 1,				// Sticks per click
+	fiberPerClick: 1,				// Fiber per click
+	hammer: 0,						// Hammer count
+	hammerCap: 10,					// Hammer cap
+	hammerLevel: 1,					// Hammer level
+	hammerCostStone: 1,				// Hammer cost in stone
+	hammerCostSticks: 1,			// Hammer cost in sticks
+	hammerCostFiber: 1,				// Hammer cost in fiber
+	hammerUpgradeCostStone: 5,		// Hamemr upgrade cost in stone
+	hammerUpgradeCostSticks: 5,	// Hammer upgrade cost in sticks
+	hammerUpgradeCostFiber: 5,		// Hammer upgrade cost in fiber
+	hp: 100,						// Current HP
+	hpCap: 100,						// HP cap
+	foodCap: 100,					// Food cap
+	waterCap: 100,					// Water cap
+	stoneCap: 50,					// Stone cap
+	sticksCap: 50,					// Sticks cap
+	fiberCap: 50,					// Fiber cap
+	spears: 0,						// Spear count
+	spearCostStone: 1,				// Spear cost (stone)
+	spearCostSticks: 1,				// Spear cost (sticks)
+	spearCostFiber: 5,				// Spear cost (fiber)
+	spearCap: 10,					// Spear cap
+	spearLevel: 1					// Spear level
+
+}
+
+// Things to appear and/or hide later
+document.getElementById("hammer").style.display = "none";
+document.getElementById("hammerUpgrade").style.display = "none";
+document.getElementById("inventory").style.display = "none";
+document.getElementById("inventoryHammer").style.display = "none";
+document.getElementById("hammerUpgradeText1").style.display = "none";
+document.getElementById("hammerUpgradeText2").style.display = "none";
+document.getElementById("spear").style.display = "none";
+document.getElementById("inventorySpear").style.display = "none";
+
+
+function gatherGen() {					// Main gather function with percentages
+	var percentage = Math.floor(Math.random() * 100) + 1;
+	if (percentage <= 44 && gameData.food < gameData.foodCap){ 								// 44% chance for food (1-44)
+		gameData.food += gameData.foodPerClick;
+	}
+	else if (percentage > 47 && percentage <= 84 && gameData.water < gameData.waterCap){ 		// 44% chance for water (45-88)
+		gameData.water += gameData.waterPerClick;
+	}
+	else if (percentage > 84 && percentage <= 92 && gameData.stone < gameData.stoneCap){		// 4% chance for stone (89-92)
+		gameData.stone += gameData.stonePerClick;
+	}
+	else if (percentage > 92 && percentage <= 96 && gameData.sticks < gameData.sticksCap){		// 4% chance for sticks (93-96)
+		gameData.sticks += gameData.sticksPerClick;
+	}
+	else if (percentage > 96 && gameData.fiber < gameData.fiberCap){							// 4% chance for fiber (97-100)
+		gameData.fiber += gameData.fiberPerClick;
+	}
+	document.getElementById("foodGathered").innerHTML = gameData.food;		// Updates foodGathered with new value
+	document.getElementById("waterGathered").innerHTML = gameData.water;	// Updates waterGathered with new value
+	document.getElementById("stoneGathered").innerHTML = gameData.stone;	// Updates stoneGathered with new value
+	document.getElementById("sticksGathered").innerHTML = gameData.sticks;	// Updates sticksGathered with new value
+	document.getElementById("fiberGathered").innerHTML = gameData.fiber;	// Updates fiberGathered with new value
+}
+
+function craftHammer() { 		// Craft hammer
+	if (gameData.stone >= gameData.hammerCostStone && gameData.sticks >= gameData.hammerCostSticks && gameData.fiber >= gameData.hammerCostFiber && gameData.hammer < gameData.hammerCap) {
+		gameData.hammer += 1;	// Adds 1 to the hammers
+		gameData.stone -= gameData.hammerCostStone;	// Subtracts hammerCostStone from stone
+		gameData.sticks -= gameData.hammerCostSticks;	// Subtracts hammerCostSticks from sticks
+		gameData.fiber -= gameData.hammerCostFiber;	// Subtracts hammerCostFiber from fiber
+		gameData.hammerCostStone += 2;			// Multiplies hammerCostStone by 2
+		gameData.hammerCostSticks += 2;			// Multiplies hammerCostSticks by 2
+		gameData.hammerCostFiber += 2;			// Multiplies hammerCostFiber by 2
+	}
+	document.getElementById("stoneGathered").innerHTML = gameData.stone;	// Displays new value of stone on HTML page
+	document.getElementById("sticksGathered").innerHTML = gameData.sticks;	// Displays new value of sticks on HTML page
+	document.getElementById("fiberGathered").innerHTML = gameData.fiber;	// Displays new value of fiber on HTML page
+	document.getElementById("hammerCostStone").innerHTML = gameData.hammerCostStone;	// Updates hammer cost (stone) on HTML page
+	document.getElementById("hammerCostSticks").innerHTML = gameData.hammerCostSticks; 	// Updates hammer cost (sticks) on HTML page
+	document.getElementById("hammerCostFiber").innerHTML = gameData.hammerCostFiber; 	// Updates hammer cost (fiber) on HTML page
+	document.getElementById("hammersCrafted").innerHTML = gameData.hammer;				// Updates current hammer count on HTML page
+	
+}
+
+function upgradeHammer() {		// Upgrades hammer
+	if(gameData.stone >= gameData.hammerUpgradeCostStone && gameData.sticks >= gameData.hammerUpgradeCostSticks && gameData.fiber >= gameData.hammerUpgradeCostFiber && gameData.hammer < gameData.hammerCap) {
+		gameData.hammerLevel += 1;									// Adds 1 to hammer level
+		gameData.stone -= gameData.hammerUpgradeCostStone;			// Subtracts the upgrade cost of stone from total stone
+		gameData.sticks -= gameData.hammerUpgradeCostSticks;		// Subtracts the upgrade cost of sticks from total sticks
+		gameData.fiber -= gameData.hammerUpgradeCostFiber;			// Subtracts the upgrade cost of fiber from total fiber
+		gameData.hammerUpgradeCostStone += 2;						// Multiplies upgrade cost for stone by 2
+		gameData.hammerUpgradeCostSticks += 2;						// Multiplies upgrade cost for sticks by 2
+		gameData.hammerUpgradeCostFiber += 2;						// Multiplies upgrade cost for fiber by 2
+	}
+	document.getElementById("hammerLevel").innerHTML = gameData.hammerLevel;
+	document.getElementById("stoneGathered").innerHTML = gameData.stone;	// Displays new value of stone on HTML page
+	document.getElementById("sticksGathered").innerHTML = gameData.sticks;	// Displays new value of sticks on HTML page
+	document.getElementById("fiberGathered").innerHTML = gameData.fiber;	// Displays new value of fiber on HTML page
+	document.getElementById("hammerUpgradeCostStone").innerHTML = gameData.hammerUpgradeCostStone; // Displays new value of hammer upgrade cost (stone) on HTML page
+	document.getElementById("hammerUpgradeCostSticks").innerHTML = gameData.hammerUpgradeCostSticks; // Displays new value of hammer upgrade cost (sticks) on HTML page
+	document.getElementById("hammerUpgradeCostFiber").innerHTML = gameData.hammerUpgradeCostFiber; // Displays new value of hammer upgrade cost (fiber) on HTML page
+}
+
+function craftSpear() {			// Craft spear
+	if(gameData.hammerLevel >= 5 && gameData.stone >= gameData.spearCostStone && gameData.sticks >= gameData.spearCostSticks && gameData.fiber >= gameData.spearCostFiber && gameData.spears < gameData.spearCap) {
+		gameData.spears += 1;
+		gameData.stone -= gameData.spearCostStone;
+		gameData.sticks -= gameData.spearCostSticks;
+		gameData.fiber -= gameData.spearCostFiber;
+		gameData.spearCostStone += 5;
+		gameData.spearCostSticks += 5;
+		gameData.spearCostFiber += 5;
+	}
+	document.getElementById("stoneGathered").innerHTML = gameData.stone;				// Displays new value of stone on HTML page
+	document.getElementById("sticksGathered").innerHTML = gameData.sticks;				// Displays new value of sticks on HTML page
+	document.getElementById("fiberGathered").innerHTML = gameData.fiber;				// Displays new value of fiber on HTML page
+	document.getElementById("spearCostStone").innerHTML = gameData.spearCostStone;		// Displays new value for spear cost (stone) on HTML page
+	document.getElementById("spearCostSticks").innerHTML = gameData.spearCostSticks;	// Displays new value for spear cost (sticks) on HTML page
+	document.getElementById("spearCostFiber").innerHTML = gameData.spearCostFiber;		// Displays new value for spear cost (fiber) on HTML page
+	document.getElementById("spearCount").innerHTML = gameData.spears;
+}
+
+function checkCaps() {			// Checks the current resources levels and compares them to the caps, so they do not go over 
+	if(gameData.food >= gameData.foodCap) {
+		gameData.food = gameData.foodCap;
+	}
+	if(gameData.water >= gameData.waterCap) {
+		gameData.water = gameData.waterCap;
+	}
+	if(gameData.stone >= gameData.stoneCap) {
+		gameData.stone = gameData.stoneCap;
+	}
+	if(gameData.sticks >= gameData.sticksCap) {
+		gameData.sticks = gameData.sticksCap;
+	}
+	if(gameData.fiber >= gameData.fiberCap) {
+		gameData.fiber = gameData.fiberCap;
+	}
+	if(gameData.hammer >= gameData.hammerCap) {
+		gameData.hammer = gameData.hammerCap;
+	}
+	if(gameData.spears >= gameData.spearCap) {
+		gameData.spears = gameData.spearCap;
+	}
+	if(gameData.hp >= gameData.hpCap) {
+		gameData.hp = gameData.hpCap;
+	}
+}
+
+function unlockGameStart() {					// Unlocks inventory, 'create hammer,' hammer level in inventory, and hides "game start text" after getting 1 stone, 1 stick, 1 fiber
+	if(gameData.stone > 0 && gameData.sticks > 0 && gameData.fiber > 0){ 		
+		document.getElementById("craftingGameStartText").style.display = "none";
+		document.getElementById("hammer").style.display = "inline-block";
+		document.getElementById("inventory").style.display = "inline-block";
+		document.getElementById("inventoryHammer").style.display = "inline-block";
+	}
+}
+
+function unlockHammerUpgrades() {				// Unlocks "Upgrade Hammer"
+	if(gameData.hammer > 0) {
+		document.getElementById("hammerUpgrade").style.display = "inline-block"; // Once you get hammer, adds "Upgrade Hammer"
+	}
+}
+
+function craftingUnlocks() {					// Different crafting unlocks
+	if(gameData.hammerLevel >= 5) {		// Spears
+		document.getElementById("spear").style.display = "inline-block";
+		document.getElementById("inventorySpear").style.display = "inline-block";
+	}
+}
+
+function textPrompts() {					// Text prompts to hide/show
+	if (gameData.hammerLevel < 5 && gameData.hammer > 0) {				// "This could be useful. Maybe I should try upgrading my hammer before trying to make other tools?"
+		document.getElementById("hammerUpgradeText1").style.display = "inline-block";
+	} else {
+		document.getElementById("hammerUpgradeText1").style.display = "none";
+	}
+	if (gameData.hammerLevel >= 5) {
+		document.getElementById("hammerUpgradeText2").style.display = "inline-block";
+	} else {
+		document.getElementById("hammerUpgradeText2").style.display = "none";
+	}
+}
+
+var mainGameLoop = window.setInterval(function() {		// Main game loop. Currently checks/updates every 1/20 of a second
+	gatherGen();		// Delete this line for actual game test, this makes it easy to test things that happen later on :)
+	unlockGameStart();
+	unlockHammerUpgrades();
+	craftingUnlocks();
+	checkCaps();
+	textPrompts();
+}, 50)

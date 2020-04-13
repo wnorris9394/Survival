@@ -1,0 +1,227 @@
+.col-container {
+	display: table;
+	height: 350px;
+	width: 100%;
+}
+
+.col {
+	display: table-cell;
+	width: 33%;
+	height: 300px;
+	padding: 5px;
+}
+
+table,tr,td,th {
+	border: none;
+}
+
+.equipped {
+	display: block;
+	width: 260px;
+	height: 260px;
+	border: 2px solid gray;
+	padding: 5px;
+	table-layout: fixed;
+}
+
+.character {
+	display: block;
+	width: 200px;
+	height: 300px;
+	position: relative;
+	left: 350px;
+}
+
+.fullDivider {
+	display: table;
+	width: 100%;
+}
+.hrDiv {
+	border-color: #ddd;
+	background-color: #ddd;
+}
+
+/* Clear floats after the columns */ 
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.helmet {
+	height: 50px;
+	width: 50px;
+	display: block;
+	margin-left: 110px;
+	margin-right: 110px;
+	margin-top: 10px;
+	box-shadow: 0 0 2px 1px rgba(0,0,0,0.5);
+	opacity: 0.25;
+}
+.helmet:hover {
+	box-shadow: 0 0 2px 1px rgba(0,0,0,1);
+}
+
+.shouldersR {
+	height: 50px;
+	width: 50px;
+	display: block;
+	margin-left: 45px;
+	margin-right: 175px;
+	margin-top: -10px;
+	box-shadow: 0 0 2px 1px rgba(0,0,0,0.5);
+	opacity: 0.25;
+}
+.shouldersR:hover {
+	box-shadow: 0 0 2px 1px rgba(0,0,0,1);
+}
+.shouldersL {
+	height: 50px;
+	width: 50px;
+	display: block;
+	margin-left: 175px;
+	margin-right: 45px;
+	margin-top: -50px;
+	box-shadow: 0 0 2px 1px rgba(0,0,0,0.5);
+	opacity: 0.25;
+}
+.shouldersL:hover {
+	box-shadow: 0 0 2px 1px rgba(0,0,0,1);
+}
+.chest {
+	height: 50px;
+	width: 50px;
+	display: block;
+	margin-left: 109px;
+	margin-right: 109px;
+	margin-top: -25px;
+	box-shadow: 0 0 2px 1px rgba(0,0,0,0.5);
+	opacity: 0.25;
+}
+.chest:hover {
+	box-shadow: 0 0 2px 1px rgba(0,0,0,1);
+}
+.glovesR {
+	height: 50px;
+	width: 50px;
+	display: block;
+	margin-left: 20px;
+	margin-right: 200px;
+	margin-top: -10px;
+	box-shadow: 0 0 2px 1px rgba(0,0,0,0.5);
+	opacity: 0.25;
+}
+.glovesR:hover {
+	box-shadow: 0 0 2px 1px rgba(0,0,0,1);
+}
+.glovesL {
+	height: 50px;
+	width: 50px;
+	display: block;
+	margin-left: 200px;
+	margin-right: 20px;
+	margin-top: -50px;
+	box-shadow: 0 0 2px 1px rgba(0,0,0,0.5);
+	opacity: 0.25;
+}
+.glovesL:hover {
+	box-shadow: 0 0 2px 1px rgba(0,0,0,1);
+}
+.pants {
+	height: 50px;
+	width: 50px;
+	display: block;
+	margin-left: 110px;
+	margin-right: 110px;
+	margin-top: -25px;
+	box-shadow: 0 0 2px 1px rgba(0,0,0,0.5);
+	opacity: 0.25;
+}
+.pants:hover {
+	box-shadow: 0 0 2px 1px rgba(0,0,0,1);
+}
+.bootsR {
+	height: 50px;
+	width: 50px;
+	display: block;
+	margin-left: 84px;
+	margin-right: 135px;
+	margin-top: 10px;
+	box-shadow: 0 0 2px 1px rgba(0,0,0,0.5);
+	opacity: 0.25;
+}
+.bootsR:hover {
+	box-shadow: 0 0 2px 1px rgba(0,0,0,1);
+}
+.bootsL {
+	height: 50px;
+	width: 50px;
+	display: block;
+	margin-left: 136px;
+	margin-right: 84px;
+	margin-top: -50px;
+	box-shadow: 0 0 2px 1px rgba(0,0,0,0.5);
+	opacity: 0.25;
+}
+.bootsL:hover {
+	box-shadow: 0 0 2px 1px rgba(0,0,0,1);
+}
+.weapon {
+	height: 50px;
+	width: 50px;
+	display: block;
+	margin-left: 20px;
+	margin-right: 200px;
+	margin-top: -50px;
+	box-shadow: 0 0 2px 1px rgba(0,0,0,0.5);
+	opacity: 0.25;
+}
+.weapon:hover {
+	box-shadow: 0 0 2px 1px rgba(0,0,0,1);
+}
+.shield {
+	height: 50px;
+	width: 50px;
+	display: block;
+	margin-left: 200px;
+	margin-right: 20px;
+	margin-top: -50px;
+	box-shadow: 0 0 2px 1px rgba(0,0,0,0.5);
+	opacity: 0.25;
+}
+.shield:hover {
+	box-shadow: 0 0 2px 1px rgba(0,0,0,1);
+}
+
+.bottomTable {
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0px;
+	width: 840px;
+	display: block;
+}
+
+.resourceIcon {
+	vertical-align: middle;
+	height: 25px;
+	width: 25px;
+}
+.inventory {
+	padding: 5px 0;
+}
+.inventoryGroups {
+	margin: auto;
+	width: 150px;
+}
+.inventoryFont {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+.buttonText {
+	line-height: 22px;
+}
+.buttonImages {
+	width: 25px;
+	height: 25px;
+	vertical-align: middle
+}

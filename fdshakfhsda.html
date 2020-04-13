@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="interface.css" />
+		<meta charset="utf-8">
+		<title>Survival</title>
+	</head>
+	<body>
+		<div class="col-container"> <!--The single row containing the 4 column layout-->
+			<div class="col" style="background-color:#ddd"> <!--GATHERING COLUMN-->
+				<center><b id="gatheringGameStart"><u>Gathering</u></b></center><br>
+				<span id="gatherResourcesGameStart">
+					<button onClick="gatherGen()"><img src="icons/island1.png" class="buttonImages" alt="Island1"><span class="buttonText"> Gather Resources</span></button>				
+				</span>
+			</div>
+			<div class="col"> <!--CRAFTING COLUMN-->
+				<center><b id="craftingGameStart"><u>Crafting</u></b></center><br>
+				<center><span id="craftingItemsGameStart">
+					<table align="center"> <!--TABLE CONTAINING ALL CRAFTING BUTTONS-->
+						<tr>
+							<th width="200">
+								<u>Tools</u>
+							</th>
+							<th width="200">
+								<u>Cost</u>
+							</th>
+							<th width="200">
+								<u>Upgrades</u>
+							</th>
+						</tr>
+						<tr>
+							<td>
+<!--BASIC BASKET-->					<button><img src="icons/basicBasket.png" alt="Basic Basket" class="buttonImages"><span class="buttonText"> Basic Basket</button><br>
+							</td>
+							<td>
+								<img src="icons/costs/sticks5.png" class="buttonImages" alt="5 Sticks">
+								<img src="icons/costs/fiber5.png" class="buttonImages" alt="5 Fiber">
+							</td>
+						</tr>
+						<tr>
+							<td>
+<!--BASIC BOWL-->					<button><img src="icons/basicBowl.png" alt="Basic Bowl" class="buttonImages"><span class="buttonText"> Basic Bowl</button><br>
+							</td>
+							<td>
+								<img src="icons/costs/sticks5.png" class="buttonImages" alt="5 Sticks">
+								<img src="icons/costs/fiber5.png" class="buttonImages" alt="5 Fiber">
+							</td>
+						</tr>
+						<tr>
+							<td>
+<!--BASIC HAMMER-->					<button><img src="icons/basicHammer.png" alt="Basic Hammer" class="buttonImages"><span class="buttonText"> Basic Hammer</button><br>
+							</td>
+							<td>
+								<img src="icons/costs/stone10.png" class="buttonImages" alt="10 Stone">
+								<img src="icons/costs/sticks1.png" class="buttonImages" alt="1 Stick">
+								<img src="icons/costs/fiber5.png" class="buttonImages" alt="5 Fiber">
+							</td>
+						</tr>
+						<tr>
+							<td>
+<!--BASIC AXE-->					<button><img src="icons/basicAxe.png" alt="Basic Axe" class="buttonImages"><span class="buttonText"> Basic Axe</button><br>
+							</td>
+							<td>
+								<img src="icons/costs/stone10.png" class="buttonImages" alt="10 Stone">
+								<img src="icons/costs/sticks1.png" class="buttonImages" alt="1 Stick">
+								<img src="icons/costs/fiber5.png" class="buttonImages" alt="5 Fiber">
+							</td>
+						</tr>
+						<tr>
+							<td>
+<!--BASIC SICKLE-->					<button><img src="icons/basicSickle.png" alt="Basic Sickle" class="buttonImages"><span class="buttonText"> Basic Sickle</button>
+							</td>
+							<td>
+								<img src="icons/costs/stone10.png" class="buttonImages" alt="10 Stone">
+								<img src="icons/costs/sticks1.png" class="buttonImages" alt="1 Stick">
+								<img src="icons/costs/fiber5.png" class="buttonImages" alt="5 Fiber">
+							</td>
+						</tr>
+					</table>
+				</span></center>
+			</div>
+			<div class="col" style="background-color:#ddd"> <!--TEXT PROMPTS COLUMN-->
+				<center><b><u>Thoughts</u></b><br>
+					<span id="story1">I awake on the beach of an island.<br>I do not know how I got here.
+					<br><br><button onClick="story(); textPrompts()">Look around</button></span>
+					
+					<span id="story2">There are a few small islands far out to sea.
+					<br><br><button onClick="story(); textPrompts()">Keep looking</button></span>
+					
+					<span id="story3">All around me are the crashed remains of what looks like a rowboat. 
+					Behind me is a large, flat patch of grass where the sand ends.
+					About ten feet father inland lies the edge of a huge, hulking forest.
+					<br><br><button onClick="story(); textPrompts()">Set up camp on the grass</button></span>
+					
+					<span id="story4">After spending an hour setting up a rudimentary camp using the rowboat remains,
+					my need for nourishment grows. Maybe I should venture into the forest in search of resources...
+					<br><br><button onClick="story(); textPrompts()">Start</button></span>
+				</center>
+			</div>
+		</div>
+		<div class="fullDivider"><hr class="hrDiv"></div><br> <!--Divides the screen into top/bottom half-->
+		<table>
+			<tr>
+				<td>
+					<div class="inventoryGroups" style="background-color:#ddd">	
+						<center><b><u>Character</u></b></center>
+						<div class="inventory" id="hpGameStart">
+							<img class="resourceIcon" src="icons/hp.png" alt="HP">
+							<span id="hp" style="color:red">50</span>/<span id="hpCap" style="color:red">100</span><b class="inventoryFont"> HP</b>
+						</div>
+						<div class="inventory" id="foodGameStart">
+							<img class="resourceIcon" src="icons/berries.png" alt="Food">
+							<span id="food" style="color:orange">50</span>/<span id="foodCap" style="color:orange">100</span><b class="inventoryFont"> Food</b>
+						</div>
+						<div class="inventory" id="waterGameStart">
+							<img class="resourceIcon" src="icons/water.png" alt="Water">
+							<span id="water" style="color:blue">50</span>/<span id="waterCap" style="color:blue">100</span><b class="inventoryFont"> Water</b>
+						</div>
+					</div>
+					<div class="inventoryGroups" style="background-color:#ddd"><center><b class="inventoryFont"><u>Inventory</u></b></center>
+						<div class="inventory" id="stoneGameStart">
+							<img class="resourceIcon" src="icons/stone.png" alt="Stone">
+							<span id="stone" style="color:gray">0</span>/<span id="stoneCap" style="color:gray">25</span><b class="inventoryFont"> Stone</b>
+						</div>
+						<div class="inventory" id="sticksGameStart">
+							<img class="resourceIcon" src="icons/sticks.png" alt="Sticks">
+							<span id="sticks" style="color:brown">0</span>/<span id="sticksCap" style="color:brown">25</span><b class="inventoryFont"> Sticks</b>
+						</div>
+						<div class="inventory" id="fiberGameStart">
+							<img class="resourceIcon" src="icons/fiber.png" alt="Fiber">
+							<span id="fiber" style="color:green">0</span>/<span id="fiberCap" style="color:green">25</span><b class="inventoryFont"> Fiber</b>
+						</div>
+					</div>
+				</td>
+				<td>
+					<center><div class="equipped"> <!--EQUIPPED ARMOR-->
+							<img class="helmet" src="icons/emptyHelmet.png" alt="Helmet" >
+							<img class="shouldersR" src="icons/emptyShouldersR.png" alt="Right Shoulders">
+							<img class="shouldersL" src="icons/emptyShouldersL.png" alt="Left Shoulders">
+							<img class="chest" src="icons/emptyChest.png" alt="Chest">
+							<img class="glovesR" src="icons/emptyGlovesR.png" alt="Right Gloves">
+							<img class="glovesL" src="icons/emptyGlovesL.png" alt="Left Gloves">
+							<img class="pants" src="icons/emptyPants.png" alt="Pants">
+							<img class="bootsR" src="icons/emptyBootsR.png" alt="Right Boots">
+							<img class="bootsL" src="icons/emptyBootsL.png" alt="Left Boots">
+							<img class="weapon" src="icons/emptyWeapon.png" alt="Weapon">
+							<img class="shield" src="icons/emptyShield.png" alt="Shield">
+					</div></center>
+				</td>
+				<td>
+					<div style="background-color:#ddd">
+						fdhskafhkdasfhdaskfhkjshdf<br><br><br><br><br><br>fdhkjsafksldah
+					</div>
+				</td>
+			</tr>
+		</table>
+	<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>

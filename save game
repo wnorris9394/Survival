@@ -1,0 +1,14 @@
+var mainGameLoop = window.setInterval(function() {
+	
+}, 1000)
+
+var savegame = JSON.parse(localStorage.getItem("survivalSave"));
+if (savegame !== null) {
+	gameData = savegame;
+	document.getElementById("foodGathered").innerHTML = gameData.food;
+	document.getElementById("waterGathered").innerHTML = gameData.water;
+}
+
+var saveGameLoop = window.setInterval(function() {
+	localStorage.setItem('survivalSave', JSON.stringify(gameData));
+}, 15000)
